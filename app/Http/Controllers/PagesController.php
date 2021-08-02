@@ -48,13 +48,24 @@ class PagesController extends Controller
         $types = Type::all();
         return view('visitor.book_index', compact('books', 'types'));
     }
+    public function book_search(Request $request){
+        $this->validate($request, [
+            'search' => 'required'
+        ]);
+        $search = $request->input('search');
+        $books = Book::where('name', 'LIKE', '%' . $search . '%')->orWhere('author', 'LIKE', '%' . $search . '%')->paginate(2);
+        $types = Type::all();
+        return view('visitor.book_index', compact('books', 'types'))->with('success', 'Search by Name');
+
+        
+    }
     public function book_find(Request $request){
         $this->validate($request, [
             'type' => 'required'
         ]);
         $newType = $request->input('type');
         if($newType !== 'null'){
-            $books = Book::orderBy('created_at', 'desc')->where('category', $newType)->where('confirmed', true)->paginate(100);
+            $books = Book::orderBy('created_at', 'desc')->where('category', $newType)->where('confirmed', true)->paginate(50);
             $types = Type::all();
             if(Auth::user()){
                 return view('user.books_index', compact('books', 'types'))->with('success', 'Filtered by Type');

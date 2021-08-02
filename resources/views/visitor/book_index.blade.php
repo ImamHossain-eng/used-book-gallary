@@ -3,11 +3,8 @@
 <body>
     <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <a href="/user/book/create" class="btn btn-outline-primary" style="width:100%;">Add Book to Our Shop</a>
-                </div>
-                <div class="col-md-4">
-                    {{Form::open(['route' => 'book.search', 'method' => 'POST', 'enctype' => 'multipart/form-data'])}}
+                <div class="col-md-3">
+                    {{Form::open(['route' => 'book.filter', 'method' => 'POST', 'enctype' => 'multipart/form-data'])}}
                     <div class="form-group">
                         <select name="type" class="form-control btn btn-outline-primary">
                             <option value="null">Choose Book Category</option>
@@ -15,11 +12,19 @@
                             <option value="{{$type->id}}"> {{$type->type}} </option>
                             @endforeach
                         </select>
-                    </div>                
+                    </div>              
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    <input type="submit" value="Filter" class="btn btn-outline-primary" style="width:100%;">
+                    {{Form::close()}}  
+                </div>
+                <div class="col-md-3">
+                    {{Form::open(['route'=>'book.search', 'method'=> 'POST'])}}
+                    @csrf
+                    <input type="text" name="search" class="form-control" placeholder="Search by Book or Author">
+                </div>
+                <div class="col-md-3">
                     <input type="submit" value="Search" class="btn btn-outline-primary" style="width:100%;">
-                    {{Form::close()}}
                 </div>
         </div>
 
