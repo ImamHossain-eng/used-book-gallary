@@ -41,13 +41,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/users/{id}/edit', [BackController::class, 'user_edit'])->name('admin.user_edit');
     Route::put('/users/{id}', [BackController::class, 'user_update'])->name('admin.user_update');
     Route::delete('/users/{id}', [BackController::class, 'user_destroy'])->name('admin.user_destroy');
-    //see user transaction
-    Route::get('/users/{id}/transaction', [BackController::class, 'user_transaction'])->name('admin.user_transaction');
     //see books request
-    Route::get('/books/request', [BackController::class, 'book_request'])->name('admin.book_request');
-    Route::get('/books/request/{id}/edit', [BackController::class, 'book_request_edit'])->name('admin.book_request_edit');
-    Route::put('/books/request/{id}', [BackController::class, 'book_request_update'])->name('admin.book_request_update');
-    Route::delete('/books/request/{id}', [BackController::class, 'book_request_destroy'])->name('admin.book_request_destroy');
     //University CRUD
     Route::get('/varsity', [BackController::class, 'varsity_index'])->name('admin.varsity_index');
     Route::get('/varsity/create', [BackController::class, 'varsity_create'])->name('admin.varsity_create');
@@ -72,14 +66,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/book/{id}/edit', [BackController::class, 'book_edit'])->name('admin.book_edit');
     Route::put('/book/{id}', [BackController::class, 'book_update'])->name('admin.book_update');
     Route::get('/book/{id}', [BackController::class, 'book_show'])->name('admin.book_show');
-    //CashIn Request
-    Route::get('/cashin/request', [BackController::class, 'cashin_request'])->name('admin.cashin_request');
-    Route::get('/cashout/request', [BackController::class, 'cashout_request'])->name('admin.cashout_request');
-    Route::get('/cashin/request/{id}', [BackController::class, 'cashin_edit'])->name('admin.cashin_edit');
-    Route::get('/cashout/request/{id}', [BackController::class, 'cashout_edit'])->name('admin.cashout_edit');
-    Route::put('/cashin/request/{id}', [BackController::class, 'cashin_update'])->name('admin.cashin_update');
-    Route::put('/cashout/request/{id}', [BackController::class, 'cashout_update'])->name('admin.cashout_update');
-    Route::delete('/cashin/request/{id}', [BackController::class, 'cashin_destroy'])->name('admin.cashin_destroy');
+    
     
 });
 
@@ -96,18 +83,11 @@ Route::prefix('user')->group(function(){
     Route::put('/book/{id}', [UserController::class, 'book_update'])->name('user.book_update');
     Route::delete('/book/{id}', [UserController::class, 'book_destroy'])->name('user.book_destroy');
     //Transaction List
-    Route::get('/transaction', [UserController::class, 'transaction_list'])->name('user.transaction');
     Route::get('/account', [UserController::class, 'user_acount'])->name('user.account');
     //Add Book to user card // order a book
     Route::post('/books/{id}', [UserController::class, 'book_card'])->name('user.book_card');
     Route::get('/orders/books', [UserController::class, 'book_order'])->name('user.book_order');
-    //Cash In
-    Route::get('/cash_in', [UserController::class, 'cash_in'])->name('user.cash_in');
-    Route::get('/cash_in/request', [UserController::class, 'cash_in_index'])->name('user.cash_in_index');
-    Route::post('/cash_in/request', [UserController::class, 'cash_in_post'])->name('user.cash_in_post');
-    Route::get('/cash_out', [UserController::class, 'cash_out'])->name('user.cash_out');
-    Route::post('/cash_out', [UserController::class, 'cash_out_post'])->name('user.cash_out_post');
-    Route::get('/cash_out/request', [UserController::class, 'cash_out_index'])->name('user.cash_out_index');
+    
 });
 
 

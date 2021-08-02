@@ -33,9 +33,6 @@
   <a href="/admin/varsity" class="w3-bar-item w3-button">University List</a>
   <a href="/admin/book" class="w3-bar-item w3-button">Books</a>
   <a href="/admin/book/type" class="w3-bar-item w3-button">Book Types</a>
-  <a href="/admin/books/request" class="w3-bar-item w3-button">Book Requests</a>
-  <a href="/admin/cashin/request" class="w3-bar-item w3-button">Cash-In Request</a>
-  <a href="/admin/cashout/request" class="w3-bar-item w3-button">Cash-Out Request</a>
   <a href="/admin/feedback" class="w3-bar-item w3-button">Feedbacks</a>
   <div>
         <a class="w3-bar-item w3-button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
