@@ -6,7 +6,7 @@
             <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Transactions</th>
+                <th>University</th>
                 <th>Created</th>
                 <th>Status</th>
                 <th>Option</th>
@@ -23,7 +23,9 @@
                     @endif >
                     <td> {{$user->name}} </td>
                     <td> {{$user->email}} </td>
-                    <td> {{Transaction::where('user_id', $user->id)->count()}} </td>
+                    <td> @if($user->varsity != '')
+                        {{ Varsity::find($user->varsity)->name}}
+                        @endif </td>
                     <td> {{$user->created_at->diffForHumans()}} </td>
                     <td>
                         @if($user->config == '1')

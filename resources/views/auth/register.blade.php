@@ -27,11 +27,17 @@
 
 
 
+
                         <div class="form-group row">
                             <label for="varsity" class="col-md-4 col-form-label text-md-right">{{ __('University Name') }}</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control @error('varsity') is-invalid @enderror" name="varsity" value="{{ old('varsity') }}" required autocomplete="varsity">
+                                <select name="varsity" class="form-control">
+                                    <option value="null">Choose University Name</option>
+                                    @foreach($varsities as $v)
+                                        <option value="{{$v->id}}"> {{$v->name}} </option>
+                                    @endforeach
+                                </select>
 
                                 @error('varsity')
                                     <span class="invalid-feedback" role="alert">

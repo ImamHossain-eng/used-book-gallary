@@ -151,22 +151,10 @@ class BackController extends Controller
     public function user_destroy($id){
         $user = User::find($id);
         if($user->is_admin !== 1){
-            $recharges = Recharge::where('user_id', $id)->get();
-            foreach($recharges as $recharge){
-                if($recharge->user_id == $user->id){
-                    $recharge->delete();
-                }
-            }
             $books = Book::where('user', $id)->get();
             foreach($books as $book){
                 if($book->user == $user->id){
                     $book->delete();
-                }
-            }
-            $orders = Order::where('user_id', $id)->get();
-            foreach($orders as $order){
-                if($order->user_id == $user->id){
-                    $order->delete();
                 }
             }
             $user->delete();
@@ -313,29 +301,6 @@ class BackController extends Controller
         }else{
             $confirm = $oldConf;
         }
-        //transaction validation
-        if($conf == 1){
-            //effect to the transaction table
-            $trans = Transaction::all();
-            //CHeck if transaction exists
-            foreach($trans as $tran){
-                if($tran->book_id !== $book->id && $tran->user_id !== $book->user){
-                    $ab = true;
-                }else{
-                    $ab = false;
-                }
-            }
-            if($ab == true){
-                    $transaction = new Transaction;
-                    $transaction->user_id = $book->user;
-                    $transaction->book_id = $book->id;
-                    $transaction->recharge_id = 0;
-                    $transaction->price = $request->input('price');
-                    $transaction->credit = true;
-                    $transaction->debit = false;
-                    $transaction->save();
-            }
-        }
         //image validation
         if($request->hasFile('image')){
             $file = $request->file('image');
@@ -363,7 +328,4 @@ class BackController extends Controller
         $book = Book::find($id);
         return view('admin.book.show', compact('book'));
     }
-    
-    
-    
 }

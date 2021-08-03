@@ -13,6 +13,7 @@
                 <thead><br>
                     <tr>
                         <th>Serial</th>
+                        <th>ID </th>
                         <th>University Name</th>
                         <th>Address</th>
                         <th>Contact Number</th>
@@ -24,9 +25,10 @@
                     @forelse($varsities as $key => $varsity)
                     <tr>
                         <td> {{$key+1}} </td>
+                        <td> {{$varsity->id}} </td>
                         <td> {{$varsity->name}} </td>
                         <td> {{$varsity->address}} </td>
-                        <td> {{$varsity->contact}} </td>
+                        <td> +880{{$varsity->contact}} </td>
                         <td> {{$varsity->created_at->diffForHumans()}} </td>
                         <td>
                             <a href="/admin/varsity/{{$varsity->id}}/edit" class="btn btn-success">

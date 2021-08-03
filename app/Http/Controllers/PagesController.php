@@ -3,15 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\Feedback;
 use App\Models\Book;
 use App\Models\Type;
+use App\Models\User;
+use App\Models\Varsity;
 
 use Auth;
 
 class PagesController extends Controller
 {
+    public function user_register(){
+        $varsities = Varsity::all();
+        return view('auth.register', compact('varsities'));
+    }
+    public function user_post(Request $request){
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $user = new User;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->varsity = $request->input('varsity');
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+        return redirect()->route('login')->with('success', 'register');
+    }
     public function index(){
         $boks = Book::orderby('created_at', 'desc')->where('user', 'admin')->where('confirmed', true)->get();
         $books = Book::orderby('created_at', 'desc')->where('confirmed', true)->take(3)->get();

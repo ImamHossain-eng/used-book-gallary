@@ -48,6 +48,11 @@
   <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
   <div class="w3-container">
     <h3>{{ Auth::user()->name}}</h3>
+    <h5>
+      @if(Auth::user()->varsity != '')
+      {{ Varsity::find(Auth::user()->varsity)->name}}
+      @endif
+    </h5>
     <p>{{ Auth::user()->created_at->diffForHumans() }}</p>
   </div>
 

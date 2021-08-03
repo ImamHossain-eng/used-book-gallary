@@ -22,8 +22,9 @@ use App\Http\Controllers\UserController;
 Route::get('/', [PagesController::class, 'index'])->name('homepage');
 Route::post('/', [PagesController::class, 'feedback'])->name('feedback');
 
-Auth::routes();
-
+Auth::routes(['register' => false]);
+Route::get('/user/register', [PagesController::class, 'user_register']);
+Route::post('/user', [PagesController::class, 'user_post'])->name('register');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'handleAdmin'])->middleware('admin')->name('admin.route');
 

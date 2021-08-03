@@ -22,6 +22,8 @@
                             @else
                             <li><a href="/home">USER DASHBOARD</a></li>
                             @endif
+                        @else
+                            <li><a href="/login">LOGIN</a></li>
                         @endif
                         
                         <div id="myNav" class="overlay">
