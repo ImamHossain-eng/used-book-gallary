@@ -38,9 +38,9 @@
                     </td>
                     <td>
                         @if(Auth::user()->is_admin == 1)
-                            <a href="/admin/users/{{$user->id}}/transaction" class="btn btn-primary">
+                            <!--<a href="/admin/users/{{$user->id}}/transaction" class="btn btn-primary">
                                 <i class="fa fa-database"></i>
-                            </a>
+                            </a>-->
                             @if($user->is_admin !== 1)
                                 <a href="/admin/users/{{$user->id}}/edit" class="btn btn-success">
                                     <i class="fa fa-check"></i>

@@ -25,14 +25,19 @@ class PagesController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+        $varsity = $request->input('varsity');
+        if($varsity != 'null'){
+            $user = new User;
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->varsity = $varsity;
+            $user->password = Hash::make($request->input('password'));
+            $user->save();
+            return redirect()->route('login')->with('success', 'Successfully Registered');
+        }else{
+            return redirect()->route('registration')->with('error', 'You did not select your University');
+        }
 
-        $user = new User;
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->varsity = $request->input('varsity');
-        $user->password = Hash::make($request->input('password'));
-        $user->save();
-        return redirect()->route('login')->with('success', 'register');
     }
     public function index(){
         $boks = Book::orderby('created_at', 'desc')->where('user', 'admin')->where('confirmed', true)->get();
@@ -68,7 +73,8 @@ class PagesController extends Controller
     public function book_index(){
         $books = Book::orderBy('created_at', 'desc')->where('confirmed', true)->paginate(6);
         $types = Type::all();
-        return view('visitor.book_index', compact('books', 'types'));
+        $varsities = Varsity::all();
+        return view('visitor.book_index', compact('books', 'types', 'varsities'));
     }
     public function book_search(Request $request){
         $this->validate($request, [
@@ -77,26 +83,37 @@ class PagesController extends Controller
         $search = $request->input('search');
         $books = Book::where('name', 'LIKE', '%' . $search . '%')->orWhere('author', 'LIKE', '%' . $search . '%')->paginate(2);
         $types = Type::all();
-        return view('visitor.book_index', compact('books', 'types'))->with('success', 'Search by Name');
+        $varsities = Varsity::all();
+        return view('visitor.book_index', compact('books', 'types', 'varsities'))->with('success', 'Search by Name');
 
         
     }
     public function book_find(Request $request){
         $this->validate($request, [
-            'type' => 'required'
+            'type' => 'required',
+            'varsity' => 'required'
         ]);
         $newType = $request->input('type');
-        if($newType !== 'null'){
+        $newVar = $request->input('varsity');
+        $types = Type::all();
+        $varsities = Varsity::all();
+        if($newType !== 'null' && $newVar == 'null'){
             $books = Book::orderBy('created_at', 'desc')->where('category', $newType)->where('confirmed', true)->paginate(50);
-            $types = Type::all();
-            if(Auth::user()){
-                return view('user.books_index', compact('books', 'types'))->with('success', 'Filtered by Type');
-            }else{
-                return view('visitor.book_index', compact('books', 'types'))->with('success', 'Filtered by Type');
-            }
+            return view('visitor.book_index', compact('books', 'types', 'varsities'))->with('success', 'Filtered by Category');
+        }elseif($newType == 'null' && $newVar !== 'null'){
+            $books = Book::orderBy('created_at', 'desc')->where('varsity', $newVar)->where('confirmed', true)->paginate(50);
+            return view('visitor.book_index', compact('books', 'types', 'varsities'))->with('success', 'Filtered by University');
+        }elseif($newType !== 'null' && $newVar !== 'null'){
+            $books = Book::orderBy('created_at', 'desc')->where('varsity', $newVar)->where('confirmed', true)->where('category', $newType)->paginate(50);
+            return view('visitor.book_index', compact('books', 'types', 'varsities'))->with('success', 'Filtered by University and Book Category');
         }else{
             return redirect()->route('visitor.book_index')->with('error', 'Select a group of book');
         }
+        /*if(Auth::user()){
+                return view('user.books_index', compact('books', 'types'))->with('success', 'Filtered by Type');
+            }else{
+                return view('visitor.book_index', compact('books', 'types'))->with('success', 'Filtered by Type');
+            } */
         
     }
 }

@@ -48,7 +48,7 @@
                             
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="/user/register">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -76,6 +76,9 @@
         </nav>
 
         <main class="py-4">
+            <div class="container">
+                @include('parts.message')
+            </div>
             @yield('content')
         </main>
     </div>

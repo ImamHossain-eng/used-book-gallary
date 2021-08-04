@@ -151,33 +151,12 @@ class UserController extends Controller
         $book->price = $request->input('price');
         $book->category = $request->input('category');
         $book->description = $request->input('description');
+        $book->number = $request->input('number');
+        $book->varsity = Auth::user()->varsity;
         $book->image = $file_name;
         $book->user = Auth::user()->id;
         $book->confirmed = false;
         $book->save();
-        //effect to the main account balance
-        /*$accounts = Account::all();
-        foreach($accounts as $acc){
-            if($acc->user_id == Auth::user()->id){
-                if($transaction->credit == true){
-                    $acc->balance += $book->price;
-                    $acc->save();
-                }elseif($transaction->debit == true){
-                    $acc->balance -= $book->price;
-                    $acc->save();
-                }else{
-                    return 123;
-                }
-            }else{
-                $account = new Account;
-                $account->user_id = Auth::user()->id;
-                if($transaction->credit == true){
-                    $account->balance = $book->price;
-                }
-                $account->save();
-            }
-        }*/
-
         return redirect()->route('user.book_index')->with('success', 'Successfully Created');
     }
     public function book_destroy($id){

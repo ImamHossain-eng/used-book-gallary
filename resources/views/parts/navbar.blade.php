@@ -5,7 +5,7 @@
                 <div class="logo">
                     <a href="/">
                         <img src="{{asset('contents/images/home/logo.png')}}" style="height:3em;width:3em;border-radius:50%;">
-                        <h2 style="color:#EFEFEF;display:inline;margin-top:5px;">Online Book Store</h2>
+                        <h2 style="color:#EFEFEF;display:inline;margin-top:5px;">Used Book Gallary</h2>
                     </a>
                 </div>
             </div>

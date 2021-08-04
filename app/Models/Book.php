@@ -12,7 +12,8 @@ class Book extends Model
     protected $fillable = [
         'name',
         'price',
-        'category'
+        'category',
+        'number'
     ];
     public function type(){
         return $this->belongsTo(Type::class);

@@ -51,6 +51,8 @@
     <h5>
       @if(Auth::user()->varsity != '')
       {{ Varsity::find(Auth::user()->varsity)->name}}
+      @else 
+      Not Found
       @endif
     </h5>
     <p>{{ Auth::user()->created_at->diffForHumans() }}</p>

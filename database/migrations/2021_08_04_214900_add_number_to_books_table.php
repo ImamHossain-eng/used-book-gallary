@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTypeToRechargesTable extends Migration
+class AddNumberToBooksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddTypeToRechargesTable extends Migration
      */
     public function up()
     {
-        Schema::table('recharges', function (Blueprint $table) {
-            $table->string('type');
+        Schema::table('books', function (Blueprint $table) {
+            $table->integer('number');
         });
     }
 
@@ -25,8 +25,8 @@ class AddTypeToRechargesTable extends Migration
      */
     public function down()
     {
-        Schema::table('recharges', function (Blueprint $table) {
-            $table->dropColumn('type');
+        Schema::table('books', function (Blueprint $table) {
+            $table->dropColumn('number');
         });
     }
 }
