@@ -27,9 +27,16 @@
                         <strong>Author/Writer: </strong>
                         {{$book->author}} <br>
                         <strong>Category/Group: </strong>
-                        {{Type::find($book->category)->type}} <br>
+                        @if($book->category !== 'null') {{Type::find($book->category)->type}} @endif<br>
                         <strong>Price: </strong>
                         {{number_format($book->price, 2)}} /= <br>
+                        <strong>University: </strong>
+                        @if($book->varsity !== 0) 
+                        {{Varsity::find($book->varsity)->name}}
+                        @else 
+                        No University Name
+                        @endif
+                         <br>
                         <br>
                         <!--if statement for confirmed-->
                         <strong>Uploaded By: </strong>

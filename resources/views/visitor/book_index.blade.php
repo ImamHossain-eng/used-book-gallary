@@ -17,7 +17,6 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            
                             <div class="form-group">
                                 <select name="type" class="form-control btn btn-outline-primary">
                                     <option value="null">Choose Book Category</option>
@@ -62,7 +61,13 @@
                             @else 
                             No Type
                             @endif
-
+                        </li>
+                        <li class="list-group-item">
+                            @if($book->varsity !== 0) 
+                            {{Varsity::find($book->varsity)->name}}
+                            @else 
+                            No University Name
+                            @endif
                         </li>
                       </ul>
                       <div class="card-body">

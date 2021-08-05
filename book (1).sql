@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2021 at 08:40 PM
+-- Generation Time: Aug 05, 2021 at 07:54 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -38,20 +38,23 @@ CREATE TABLE `books` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `author` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `description` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `varsity` int(11) NOT NULL,
+  `number` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`id`, `name`, `image`, `category`, `price`, `confirmed`, `user`, `created_at`, `updated_at`, `author`, `description`) VALUES
-(42, 'Caleb Wise', 'no_image.png', '12', 561, 1, '1', '2021-07-14 17:28:43', '2021-07-14 17:31:37', 'Quia atque vero nesc', NULL),
-(43, 'Shellie Love', 'no_image.png', '10', 967, 1, '1', '2021-07-15 05:49:12', '2021-07-15 05:49:12', 'Quos deserunt quis q', NULL),
-(44, 'Basic Statistics and Probability', 'no_image.png', '10', 500, 2, '1', '2021-07-15 05:52:11', '2021-07-15 06:12:12', 'R E Walpole and R H Myers', NULL),
-(46, 'Test Book', 'no_image.png', '8', 200, 1, '1', '2021-07-15 07:21:18', '2021-07-15 07:28:35', 'dafgbsfd', '<p>abcd</p>'),
-(48, 'Bradley Turner', 'no_image.png', 'null', 731, 1, '1', '2021-07-15 08:53:17', '2021-07-15 08:53:17', 'Nihil minima minus c', '<p>svd</p>'),
-(49, 'Demetrius Robbins', 'no_image.png', '11', 841, 2, '1', '2021-07-15 09:16:42', '2021-08-02 15:40:56', 'Aliquam natus ut nec', '<p>xfgjnfgyhn</p>');
+INSERT INTO `books` (`id`, `name`, `image`, `category`, `price`, `confirmed`, `user`, `created_at`, `updated_at`, `author`, `description`, `varsity`, `number`) VALUES
+(42, 'Caleb Wise', 'no_image.png', '12', 561, 1, '1', '2021-07-14 17:28:43', '2021-07-14 17:31:37', 'Quia atque vero nesc', NULL, 0, 0),
+(43, 'Shellie Love', 'no_image.png', '10', 967, 1, '1', '2021-07-15 05:49:12', '2021-07-15 05:49:12', 'Quos deserunt quis q', NULL, 0, 0),
+(44, 'Basic Statistics and Probability', 'no_image.png', '10', 500, 2, '1', '2021-07-15 05:52:11', '2021-07-15 06:12:12', 'R E Walpole and R H Myers', NULL, 0, 0),
+(46, 'Test Book', 'no_image.png', '8', 200, 1, '1', '2021-07-15 07:21:18', '2021-07-15 07:28:35', 'dafgbsfd', '<p>abcd</p>', 0, 0),
+(48, 'Bradley Turner', 'no_image.png', 'null', 731, 1, '1', '2021-07-15 08:53:17', '2021-07-15 08:53:17', 'Nihil minima minus c', '<p>svd</p>', 0, 0),
+(49, 'Demetrius Robbins', 'no_image.png', '11', 841, 2, '1', '2021-07-15 09:16:42', '2021-08-02 15:40:56', 'Aliquam natus ut nec', '<p>xfgjnfgyhn</p>', 0, 0),
+(52, 'Alfreda Ingram', 'no_image.png', '11', 890, 1, '43', '2021-08-04 15:54:25', '2021-08-04 16:20:50', 'Aut Nam aliquid fuga', '<p>&nbsp;njk.bjk.</p>', 3, 1813083311);
 
 -- --------------------------------------------------------
 
@@ -121,7 +124,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (17, '2021_07_14_215113_add_type_to_recharges_table', 15),
 (18, '2021_07_15_131712_add_description_to_books_table', 16),
 (19, '2021_08_01_193934_add_varsity_to_users_table', 17),
-(20, '2021_08_01_194839_create_varsities_table', 18);
+(20, '2021_08_01_194839_create_varsities_table', 18),
+(21, '2021_08_04_213938_add_varsity_to_books_table', 19),
+(22, '2021_08_04_214900_add_number_to_books_table', 19);
 
 -- --------------------------------------------------------
 
@@ -189,7 +194,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `is_admin`, `pa
 (34, 'sub admin', 'admin_sub@gmail.com', NULL, 1, '$2y$10$y0aI4esFlJRSVFUuWeNqAOCCvM8DDQo1qTofuen2qJ/IKowI2zy/q', NULL, '2021-07-14 17:41:21', '2021-07-14 17:41:21', NULL, NULL),
 (37, 'abul', 'abul@gmail.com', NULL, NULL, '$2y$10$hD4R0ubGonf2MQrXeRetW.Izg/VrwSvVt2VMgoLEY6O.V7r1iHWRS', NULL, '2021-07-15 10:11:19', '2021-07-15 10:11:29', '0', NULL),
 (40, 'Mahbub', 'mahbub@gmail.com', NULL, NULL, '$2y$10$/qL1GDfEkMqeEOJX4UaTBuNnw0IFavPmXcNM759OvawtK/q/wPZ3W', NULL, '2021-08-03 18:19:37', '2021-08-03 18:19:37', NULL, NULL),
-(41, 'Zahid', 'zahid@gmail.com', NULL, NULL, '$2y$10$y/Je//drBZ/jJJsPKCKHH.5I2Ozg89TDxV0zQ35SGhIA60r5/h6Je', NULL, '2021-08-03 18:29:14', '2021-08-03 18:29:14', NULL, '3');
+(41, 'Zahid', 'zahid@gmail.com', NULL, NULL, '$2y$10$y/Je//drBZ/jJJsPKCKHH.5I2Ozg89TDxV0zQ35SGhIA60r5/h6Je', NULL, '2021-08-03 18:29:14', '2021-08-03 18:29:14', NULL, '3'),
+(43, 'Tatum Blackburn', 'abcd@gmail.cm', NULL, NULL, '$2y$10$dkwImeNjyTBHpAZpnMHAOuWdKpiJ95fJ2wAK.8TTmdpGDyTb9dR.C', NULL, '2021-08-04 15:12:47', '2021-08-04 15:16:06', '0', '3'),
+(44, 'Clarke Spears', 'cd@gmail.com', NULL, NULL, '$2y$10$KbV5d5Hs0hboHqjNPMqj4.lkkFfAQN0b2jl4cbYQSqXDSqAri7gMa', NULL, '2021-08-04 16:37:16', '2021-08-04 16:37:16', NULL, '3'),
+(45, 'Craig Goodwin', 'tonoy11@gmail.com', NULL, NULL, '$2y$10$DYyRnqngJAMAlVgm63TMHeJBeCd0LSRVC8UZetInZZVCjlfrziQNq', NULL, '2021-08-04 16:38:10', '2021-08-04 16:38:10', NULL, '3');
 
 -- --------------------------------------------------------
 
@@ -276,7 +284,7 @@ ALTER TABLE `varsities`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -294,7 +302,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `types`
@@ -306,7 +314,7 @@ ALTER TABLE `types`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `varsities`

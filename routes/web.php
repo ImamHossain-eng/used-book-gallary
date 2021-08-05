@@ -23,6 +23,8 @@ Route::get('/', [PagesController::class, 'index'])->name('homepage');
 Route::post('/', [PagesController::class, 'feedback'])->name('feedback');
 
 Auth::routes(['register' => false]);
+
+
 Route::get('/user/register', [PagesController::class, 'user_register'])->name('registration');
 Route::post('/user', [PagesController::class, 'user_post'])->name('register');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
