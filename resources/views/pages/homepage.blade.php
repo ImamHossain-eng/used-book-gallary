@@ -20,8 +20,7 @@
   @include('parts.project_section')
 <!-- project section end -->   
 <!-- our price section start -->   
-  @include('parts.our_price')
-<!-- our price section end -->   
+ 
 
 <!-- contact section start -->
   @include('parts.contact')

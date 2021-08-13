@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2021 at 07:54 PM
+-- Generation Time: Aug 06, 2021 at 09:53 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -50,10 +50,10 @@ CREATE TABLE `books` (
 INSERT INTO `books` (`id`, `name`, `image`, `category`, `price`, `confirmed`, `user`, `created_at`, `updated_at`, `author`, `description`, `varsity`, `number`) VALUES
 (42, 'Caleb Wise', 'no_image.png', '12', 561, 1, '1', '2021-07-14 17:28:43', '2021-07-14 17:31:37', 'Quia atque vero nesc', NULL, 0, 0),
 (43, 'Shellie Love', 'no_image.png', '10', 967, 1, '1', '2021-07-15 05:49:12', '2021-07-15 05:49:12', 'Quos deserunt quis q', NULL, 0, 0),
-(44, 'Basic Statistics and Probability', 'no_image.png', '10', 500, 2, '1', '2021-07-15 05:52:11', '2021-07-15 06:12:12', 'R E Walpole and R H Myers', NULL, 0, 0),
+(44, 'Basic Statistics and Probability', 'no_image.png', '10', 500, 1, '1', '2021-07-15 05:52:11', '2021-07-15 06:12:12', 'R E Walpole and R H Myers', NULL, 0, 0),
 (46, 'Test Book', 'no_image.png', '8', 200, 1, '1', '2021-07-15 07:21:18', '2021-07-15 07:28:35', 'dafgbsfd', '<p>abcd</p>', 0, 0),
-(48, 'Bradley Turner', 'no_image.png', 'null', 731, 1, '1', '2021-07-15 08:53:17', '2021-07-15 08:53:17', 'Nihil minima minus c', '<p>svd</p>', 0, 0),
-(49, 'Demetrius Robbins', 'no_image.png', '11', 841, 2, '1', '2021-07-15 09:16:42', '2021-08-02 15:40:56', 'Aliquam natus ut nec', '<p>xfgjnfgyhn</p>', 0, 0),
+(48, 'Bradley Turner', 'no_image.png', 'null', 731, 1, '1', '2021-07-15 08:53:17', '2021-07-15 08:53:17', 'Nihil minima minus c', '<p>svd</p>', 4, 0),
+(49, 'Demetrius Robbins', 'no_image.png', '11', 841, 1, '1', '2021-07-15 09:16:42', '2021-08-02 15:40:56', 'Aliquam natus ut nec', '<p>xfgjnfgyhn</p>', 0, 0),
 (52, 'Alfreda Ingram', 'no_image.png', '11', 890, 1, '43', '2021-08-04 15:54:25', '2021-08-04 16:20:50', 'Aut Nam aliquid fuga', '<p>&nbsp;njk.bjk.</p>', 3, 1813083311);
 
 -- --------------------------------------------------------
@@ -87,6 +87,13 @@ CREATE TABLE `feedback` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `name`, `email`, `phone`, `message`, `created_at`, `updated_at`) VALUES
+(9, 'Mahbub', 'mahbub@gmail.com', '0155', 'This is a Message', '2021-08-06 07:19:25', '2021-08-06 07:19:25');
 
 -- --------------------------------------------------------
 
@@ -197,7 +204,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `is_admin`, `pa
 (41, 'Zahid', 'zahid@gmail.com', NULL, NULL, '$2y$10$y/Je//drBZ/jJJsPKCKHH.5I2Ozg89TDxV0zQ35SGhIA60r5/h6Je', NULL, '2021-08-03 18:29:14', '2021-08-03 18:29:14', NULL, '3'),
 (43, 'Tatum Blackburn', 'abcd@gmail.cm', NULL, NULL, '$2y$10$dkwImeNjyTBHpAZpnMHAOuWdKpiJ95fJ2wAK.8TTmdpGDyTb9dR.C', NULL, '2021-08-04 15:12:47', '2021-08-04 15:16:06', '0', '3'),
 (44, 'Clarke Spears', 'cd@gmail.com', NULL, NULL, '$2y$10$KbV5d5Hs0hboHqjNPMqj4.lkkFfAQN0b2jl4cbYQSqXDSqAri7gMa', NULL, '2021-08-04 16:37:16', '2021-08-04 16:37:16', NULL, '3'),
-(45, 'Craig Goodwin', 'tonoy11@gmail.com', NULL, NULL, '$2y$10$DYyRnqngJAMAlVgm63TMHeJBeCd0LSRVC8UZetInZZVCjlfrziQNq', NULL, '2021-08-04 16:38:10', '2021-08-04 16:38:10', NULL, '3');
+(45, 'Craig Goodwin', 'tonoy11@gmail.com', NULL, NULL, '$2y$10$DYyRnqngJAMAlVgm63TMHeJBeCd0LSRVC8UZetInZZVCjlfrziQNq', NULL, '2021-08-04 16:38:10', '2021-08-04 16:38:10', NULL, '3'),
+(46, 'Md Saiful Islam', 'saiful@gmail.com', NULL, NULL, '$2y$10$cgCQueUHghCI/xi.N2oPXuFOmxYOM4r1XaMye.b9XojMoejR4gYfe', NULL, '2021-08-06 07:43:37', '2021-08-06 07:45:37', '0', '3');
 
 -- --------------------------------------------------------
 
@@ -296,7 +304,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -314,7 +322,7 @@ ALTER TABLE `types`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `varsities`

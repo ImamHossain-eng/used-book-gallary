@@ -13,6 +13,7 @@ use App\Models\Transaction;
 use App\Models\Order;
 use App\Models\Account;
 use App\Models\Recharge;
+use App\Models\Post;
 
 
 use Image;
@@ -327,5 +328,17 @@ class BackController extends Controller
     public function book_show($id){
         $book = Book::find($id);
         return view('admin.book.show', compact('book'));
+    }
+    public function post_index(){
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
+        return view('admin.super.post_index', compact('posts'));
+    }
+    public function post_show($id){
+        $post = Post::find($id);
+        return view('admin.super.post_show', compact('post'));
+    }
+    public function post_destroy($id){
+        Post::find($id)->delete();
+        return redirect()->route('admin.post_index')->with('error', 'Removed a post successfully');
     }
 }

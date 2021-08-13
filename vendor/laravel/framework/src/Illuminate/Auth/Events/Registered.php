@@ -24,6 +24,8 @@ class Registered
     public function __construct($user)
     {
         $this->user = $user;
+        
     }
+    
     
 }

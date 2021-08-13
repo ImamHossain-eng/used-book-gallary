@@ -47,7 +47,7 @@
                                 @elseif($book->confirmed == 0)
                                 Pending
                                 @elseif($book->confirmed == 2)
-                                Out of Stock
+                                Unknown
                                 @else 
                                 Processing
                                 @endif

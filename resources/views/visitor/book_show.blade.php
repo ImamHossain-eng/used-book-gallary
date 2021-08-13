@@ -30,6 +30,7 @@
                         @if($book->category !== 'null') {{Type::find($book->category)->type}} @endif<br>
                         <strong>Price: </strong>
                         {{number_format($book->price, 2)}} /= <br>
+                        
                         <strong>University: </strong>
                         @if($book->varsity !== 0) 
                         {{Varsity::find($book->varsity)->name}}

@@ -2,30 +2,47 @@
 @section('content')
 <body><br>
     <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    {{Form::open(['route' => 'book.filter', 'method' => 'POST', 'enctype' => 'multipart/form-data'])}}
-                    <div class="form-group">
-                        <select name="type" class="form-control btn btn-outline-primary">
-                            <option value="null">Choose Book Category</option>
-                            @foreach($types as $type)
-                            <option value="{{$type->id}}"> {{$type->type}} </option>
-                            @endforeach
-                        </select>
-                    </div>                
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4">
+                        {{Form::open(['route' => 'book.filter', 'method' => 'POST', 'enctype' => 'multipart/form-data'])}}
+                        <div class="form-group">
+                            <select name="varsity" class="form-control btn btn-outline-primary">
+                                <option value="null">Choose University</option>
+                                @foreach($varsities as $varsity)
+                                <option value="{{$varsity->id}}"> {{$varsity->name}} </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select name="type" class="form-control btn btn-outline-primary">
+                                <option value="null">Choose Book Category</option>
+                                @foreach($types as $type)
+                                <option value="{{$type->id}}"> {{$type->type}} </option>
+                                @endforeach
+                            </select>
+                        </div>              
+                    </div>
+                    <div class="col-md-4">
+                        <input type="submit" value="Filter" class="btn btn-outline-primary" style="width:100%;">
+                        {{Form::close()}}  
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <input type="submit" value="Search" class="btn btn-outline-primary" style="width:100%;">
-                    {{Form::close()}}
-                </div>
-                <div class="col-md-3">
-                    {{Form::open(['route'=>'book.search', 'method'=> 'POST'])}}
-                    @csrf
-                    <input type="text" name="search" class="form-control" placeholder="Search by Book or Author">
-                </div>
-                <div class="col-md-3">
-                    <input type="submit" value="Search" class="btn btn-outline-primary" style="width:100%;">
-                </div>
+            </div>
+            <div class="col-md-3">
+                {{Form::open(['route'=>'book.search', 'method'=> 'POST'])}}
+                @csrf
+                <input type="text" name="search" class="form-control" placeholder="Search by Book or Author">
+            </div>
+            <div class="col-md-3">
+                <input type="submit" value="Search" class="btn btn-outline-primary" style="width:100%;">
+            </div>
+    </div>
+
+    
         </div>
         <br>
 

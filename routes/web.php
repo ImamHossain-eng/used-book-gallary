@@ -23,6 +23,19 @@ Route::get('/', [PagesController::class, 'index'])->name('homepage');
 Route::post('/', [PagesController::class, 'feedback'])->name('feedback');
 
 Auth::routes(['register' => false]);
+/*Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+*/
 
 
 Route::get('/user/register', [PagesController::class, 'user_register'])->name('registration');
@@ -69,8 +82,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/book/{id}/edit', [BackController::class, 'book_edit'])->name('admin.book_edit');
     Route::put('/book/{id}', [BackController::class, 'book_update'])->name('admin.book_update');
     Route::get('/book/{id}', [BackController::class, 'book_show'])->name('admin.book_show');
-    
-    
+
+    //Post Crud
+    Route::get('/post', [BackController::class, 'post_index'])->name('admin.post_index');
+    Route::get('/post/{id}', [BackController::class, 'post_show'])->name('admin.post_show');
+    Route::delete('/post/{id}', [BackController::class, 'post_destroy'])->name('admin.post_destroy');
 });
 
 //User Route
@@ -85,11 +101,11 @@ Route::prefix('user')->group(function(){
     Route::get('/book/{id}/edit', [UserController::class, 'book_edit'])->name('user.book_edit');
     Route::put('/book/{id}', [UserController::class, 'book_update'])->name('user.book_update');
     Route::delete('/book/{id}', [UserController::class, 'book_destroy'])->name('user.book_destroy');
-    //Transaction List
-    Route::get('/account', [UserController::class, 'user_acount'])->name('user.account');
-    //Add Book to user card // order a book
-    Route::post('/books/{id}', [UserController::class, 'book_card'])->name('user.book_card');
-    Route::get('/orders/books', [UserController::class, 'book_order'])->name('user.book_order');
+
+    Route::get('/post', [UserController::class, 'post_index'])->name('user.post_index');
+    Route::get('/post/create', [UserController::class, 'post_create'])->name('user.post_create');
+    Route::post('post', [UserController::class, 'post_store'])->name('user.post_store');
+    Route::get('/post/{id}', [UserController::class, 'post_show'])->name('user.post_show');
     
 });
 

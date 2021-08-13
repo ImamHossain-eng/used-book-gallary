@@ -48,7 +48,7 @@
                                     <i class="fa fa-eye"></i>
                                 </a>
                                 
-                                @if($book->confirmed == 0)
+                                
                                 <a href="/user/book/{{$book->id}}/edit" class="btn btn-success">
                                     <i class="fa fa-check"></i>
                                 </a>
@@ -57,7 +57,7 @@
                                     <i class="fa fa-trash"></i>
                                 </button>
                                 {{Form::close()}}
-                                @endif
+                                
                             </td>
                         </tr>
                     @empty

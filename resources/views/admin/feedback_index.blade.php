@@ -20,7 +20,10 @@
                     @forelse($feedbacks as $key => $feedback)
                     <tr>
                         <td> {{$key+1}} </td>
-                        <td> {{$feedback->name}} </td>
+                        <td> <a href="/admin/feedback/{{$feedback->id}}">
+                                {{$feedback->name}}
+                            </a>
+                        </td>
                         <td> {{$feedback->email}} </td>
                         <td> {{$feedback->phone}} </td>
                         <td>

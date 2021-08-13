@@ -7,10 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Type;
 use App\Models\Book;
-use App\Models\Transaction;
-use App\Models\Account;
-use App\Models\Order;
-use App\Models\Recharge;
+use App\Models\Varsity;
+use App\Models\Post;
+
 
 use Auth;
 use Image;
@@ -21,50 +20,13 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
-    //add book to user card
-    public function book_card($id){
-        $book = Book::find($id);
-        if(Auth::user()->id == $book->user){
-            return redirect()->route('user.book_order')->with('error', 'We could not place your order');;
-        }
-        else{
-            $user_id = Auth::user()->id;
-            if(Order::where('user_id', '=', $user_id)->exists()){
-                $orders = Order::all();
-                foreach($orders as $order){
-                    if($order->book_id == $book->id){
-                        $ab = true;
-                        return redirect()->route('user.book_order')->with('error', 'You have already order this book');
-                    }else{
-                        $ab = false;
-                    }
-                }
-                if($ab == false){
-                    $order = new Order;
-                    $order->user_id = Auth::user()->id;
-                    $order->book_id = $book->id;
-                    $order->status = false;
-                    $order->save();
-                    return redirect()->route('user.book_order')->with('success', 'Your Order is Placed Successfully');
-                }
-            }else{
-                $order = new Order;
-                $order->user_id = Auth::user()->id;
-                $order->book_id = $book->id;
-                $order->status = false;
-                $order->save();
-                return redirect()->route('user.book_order')->with('success', 'Your Order is Placed Successfully');
-            }    
-        }
-    }
-    public function book_order(){
-        $orders = Order::where('user_id', Auth::user()->id )->get();
-        return view('user.order_index', compact('orders'));
-    }
+    
+   
     public function books_index(){
         $books = Book::orderBy('created_at', 'desc')->where('confirmed', true)->paginate(6);
         $types = Type::all();
-        return view('user.books_index', compact('books', 'types'));
+        $varsities = Varsity::all();
+        return view('user.books_index', compact('books', 'types', 'varsities'));
     }
     public function book_index(){
         $user = Auth::user()->id;
@@ -167,5 +129,31 @@ class UserController extends Controller
         }
         $book->delete();
         return redirect()->route('user.book_index')->with('error', 'Removed');
+    }
+    public function post_index(){
+        //$posts = Post::orderBy('id', 'desc')->where('user_id', Auth::user()->id)->paginate(10);
+        $posts = Auth::user()->posts;
+        return view('user.post_index', compact('posts'));
+    }
+    public function post_create(){
+        return view('user.post_create');
+    }
+    public function post_store(Request $request){
+        $this->validate($request, [
+            'book_name' => 'required',
+            'number' => 'required',
+            'body' => 'required'
+        ]);
+        $post = new Post;
+        $post->user_id = Auth::user()->id;
+        $post->book_name = $request->input('book_name');
+        $post->number = $request->input('number');
+        $post->body = $request->input('body');
+        $post->save();
+        return redirect()->route('user.post_index')->with('success', 'Successfully Created');        
+    }
+    public function post_show($id){
+        $post = Post::find($id);
+        return view('user.post_show', compact('post'));
     }
 }

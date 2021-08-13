@@ -33,7 +33,17 @@
                     <br>
                     <strong>Price: </strong>
                     {{number_format($book->price, 2)}} BDT<br>
-                    <br>
+                    
+                    <strong>Contact Number: </strong>
+                        {{$book->number}}<br>
+                        <strong>University: </strong>
+                        @if($book->varsity !== 0) 
+                        {{Varsity::find($book->varsity)->name}}
+                        @else 
+                        No University Name
+                        @endif
+                         <br>
+                         <br>
                     <!--if statement for confirmed-->
                     <strong>Status: </strong>
                     @if($book->confirmed == true)

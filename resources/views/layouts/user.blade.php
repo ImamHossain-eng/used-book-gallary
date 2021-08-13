@@ -32,6 +32,7 @@
   <a href="/" class="w3-bar-item w3-button">Back to Home</a>
   <a href="/user/books" class="w3-bar-item w3-button">Available Book</a>
   <a href="/user/book" class="w3-bar-item w3-button">Book List</a>
+  <a href="/user/post" class="w3-bar-item w3-button">Post List</a>
   <a href="#" class="w3-bar-item w3-button">Registered Users</a>
   @endif
   <div>

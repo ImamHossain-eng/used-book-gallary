@@ -40,7 +40,7 @@ class PagesController extends Controller
 
     }
     public function index(){
-        $boks = Book::orderby('created_at', 'desc')->where('user', 'admin')->where('confirmed', true)->get();
+        $boks = Book::orderby('created_at', 'desc')->where('confirmed', true)->get();
         $books = Book::orderby('created_at', 'desc')->where('confirmed', true)->take(3)->get();
         return view('pages.homepage', compact('boks', 'books'));
     }
@@ -64,7 +64,10 @@ class PagesController extends Controller
     }
     public function book_show($id){
         $book = Book::find($id);
-        if(Auth::user()){
+        if(Auth::user()->is_admin == 1){
+            return view('admin.book.show', compact('book'));
+            
+        }elseif(Auth::user()->is_admin !== 1){
             return view('user.book_show', compact('book'));
         }else{
             return view('visitor.book_show', compact('book'));
