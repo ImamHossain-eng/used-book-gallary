@@ -10,6 +10,8 @@ use App\Models\Book;
 use App\Models\Type;
 use App\Models\User;
 use App\Models\Varsity;
+use App\Models\Post;
+
 
 use Auth;
 
@@ -84,7 +86,7 @@ class PagesController extends Controller
             'search' => 'required'
         ]);
         $search = $request->input('search');
-        $books = Book::where('name', 'LIKE', '%' . $search . '%')->orWhere('author', 'LIKE', '%' . $search . '%')->paginate(2);
+        $books = Book::where('name', 'LIKE', '%' . $search . '%')->orWhere('author', 'LIKE', '%' . $search . '%')->paginate(10);
         $types = Type::all();
         $varsities = Varsity::all();
         return view('visitor.book_index', compact('books', 'types', 'varsities'))->with('success', 'Search by Name');
@@ -118,5 +120,30 @@ class PagesController extends Controller
                 return view('visitor.book_index', compact('books', 'types'))->with('success', 'Filtered by Type');
             } */
         
+    }
+    public function post_index(){
+        $posts = Post::latest()->paginate(10);
+        return view('visitor.post_index', compact('posts'));
+    }
+    public function post_show($id){
+        $post = Post::find($id);
+        $posts = Post::latest()->take(4)->get();
+        if(Auth::check()){
+            if(Auth::user()->is_admin == 1){
+                return view('admin.super.post_show', compact('post'));
+            }
+            return view('user.post_show', compact('post'));
+        }else{
+            return view('visitor.post_show', compact('post', 'posts'));
+        }
+        
+    }
+    public function post_search(Request $request){
+        $this->validate($request, [
+            'book' => 'required'
+        ]);
+        $search = $request->input('book');
+        $posts = Post::where('book_name', 'LIKE', '%' . $search . '%')->paginate(10);
+        return view('visitor.post_index', compact('posts'));           
     }
 }

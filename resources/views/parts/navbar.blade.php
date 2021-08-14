@@ -15,6 +15,7 @@
                         <li><a href="/">HOME</a></li>                                                    
                         <li><a href="#">ABOUT</a></li>
                         <li><a href="/books">BOOK LIST</a></li>
+                        <li><a href="/posts">POST</a></li>
                         <li><a href="/contact">CONTACT US</a></li>
                         @if(Auth::check())
                             @if(Auth::user()->is_admin == 1)

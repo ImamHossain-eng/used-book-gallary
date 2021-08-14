@@ -106,6 +106,9 @@ Route::prefix('user')->group(function(){
     Route::get('/post/create', [UserController::class, 'post_create'])->name('user.post_create');
     Route::post('post', [UserController::class, 'post_store'])->name('user.post_store');
     Route::get('/post/{id}', [UserController::class, 'post_show'])->name('user.post_show');
+    Route::delete('/post/{id}', [UserController::class, 'post_destroy'])->name('user.post_destroy');
+    Route::get('/post/{id}/edit', [UserController::class, 'post_edit'])->name('user.post_edit');
+    Route::put('/post/{id}', [UserController::class, 'post_update'])->name('user.post_update');
     
 });
 
@@ -114,6 +117,10 @@ Route::prefix('user')->group(function(){
 //Visitor Route
 Route::get('/book/{id}', [PagesController::class, 'book_show']);
 Route::get('/books', [PagesController::class, 'book_index'])->name('visitor.book_index');
+Route::get('/posts', [PagesController::class, 'post_index'])->name('visitor.book_index');
+Route::get('/post/{id}', [PagesController::class, 'post_show'])->name('visitor.post_index');
+//search the post
+Route::post('/posts', [PagesController::class, 'post_search'])->name('post.search');
 //search the book
 Route::post('/book', [PagesController::class, 'book_find'])->name('book.filter');
 //search

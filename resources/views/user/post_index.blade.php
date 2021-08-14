@@ -7,7 +7,14 @@
         </div>
         <div class="card-body">
             
-            <a href="/user/post/create" class="btn btn-primary">Add New Post</a>
+            <div class="row mb-2">
+                <div class="col-md-5">
+                    <a href="/user/post/create" class="btn btn-primary" style="width:90%;">Add New Post</a>
+                </div>
+                <div class="col-md-5">
+                    <a href="/posts" class="btn btn-primary" style="width:90%;">Show All Posts</a>
+                </div>
+            </div>
             <br>
             <table class="table table-striped table-bordered table-responsive">
               
@@ -25,7 +32,7 @@
                     @forelse($posts as $key => $post)
                         <tr>
                             <td> {{$key+1}} </td>
-                            <td> {{$post->user_id}} </td>
+                            <td> {{$post->user->name}} </td>
                             <td> {{$post->book_name}} </td>
                             <td> {{$post->number}} </td>
                             <td> {{$post->created_at}} </td>
@@ -33,7 +40,10 @@
                                 <a href="/user/post/{{$post->id}}" class="btn btn-primary">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                {{Form::open(['method'=>'DELETE', 'style'=>'display:inline;', 'route'=>['admin.post_destroy', $post->id]])}}
+                                <a href="/user/post/{{$post->id}}/edit" class="btn btn-success">
+                                    <i class="fa fa-check"></i>
+                                </a>
+                                {{Form::open(['method'=>'DELETE', 'style'=>'display:inline;', 'route'=>['user.post_destroy', $post->id]])}}
                                     <button class="btn btn-danger">
                                         <i class="fa fa-trash"></i>
                                     </button>

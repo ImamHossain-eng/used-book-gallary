@@ -158,6 +158,10 @@ class BackController extends Controller
                     $book->delete();
                 }
             }
+            $posts = $user->posts;
+            foreach($posts as $post){
+                $post->delete();
+            }
             $user->delete();
             return redirect()->route('admin.user_index')->with('error', 'Removed Done');
         }else{

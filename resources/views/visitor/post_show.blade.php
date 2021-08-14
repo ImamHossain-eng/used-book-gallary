@@ -1,9 +1,9 @@
-@extends('layouts.user')
+@extends('layouts.app')
 @section('content')
 <body>
     <div class="container">
         <div class="row g-5">
-            <div class="col-md-12">
+            <div class="col-md-8">
               <h3 class="pb-4 mb-4 fst-italic border-bottom">
                 {{$post->user->name}}                
               </h3>
@@ -34,8 +34,22 @@
                 
               </article>
             </div>
-            
+            <div class="col-md-4" style="border-left: 1px solid #212121">
+                <h4>Recent Posts</h4>
+                <hr>
+                @foreach($posts as $post)
+                <p class="mb-2">
+                   <a href="/post/{{$post->id}}">
+                        <strong class="d-inline-block mb-2 text-info">
+                            <h4>{{$post->book_name}}</h4> 
+                        </strong>
+                    </a> 
+                    {{$post->created_at->diffForHumans()}}
+                </p>
+                @endforeach
+            </div>
         </div>
     </div>
 </body>
+
 @endsection

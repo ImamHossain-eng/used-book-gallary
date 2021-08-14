@@ -156,4 +156,25 @@ class UserController extends Controller
         $post = Post::find($id);
         return view('user.post_show', compact('post'));
     }
+    public function post_destroy($id){
+        Post::find($id)->delete();
+        return redirect()->route('user.post_index')->with('error', 'Successfully Removed');
+    }
+    public function post_edit($id){
+        $post = Post::find($id);
+        return view('user.post_edit', compact('post'));
+    }
+    public function post_update(Request $request, $id){
+        $this->validate($request, [
+            'book_name' => 'required',
+            'number' => 'required',
+            'body' => 'required'
+        ]);
+        $post = Post::find($id);
+        $post->book_name = $request->input('book_name');
+        $post->number = $request->input('number');
+        $post->body = $request->input('body');
+        $post->save();
+        return redirect()->route('user.post_index')->with('warning', 'Successfully Updated'); 
+    }
 }
