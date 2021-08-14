@@ -38,9 +38,18 @@
             </div>
             @empty
             <div class="container-fluid">
-                <div class="text-warning">
-                    No Post
+               <div class="row mb-2 text-center" style="justify-content:center;">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="text-danger">
+                      No Post Found
+                    </h4>
+                  </div>
+                  <div class="card-body">
+                    Coming Soon
+                  </div>
                 </div>
+               </div>
             </div>
                 
             @endforelse
