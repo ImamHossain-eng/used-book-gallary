@@ -19,6 +19,9 @@
                     <input type="number" name="price" value="{{$book->price}}" placeholder="Enter Book Price" class="form-control">
                 </div><br>
                 <div class="form-group">
+                    <input type="number" name="number" value="{{$book->number}}" placeholder="Enter Contact Number" class="form-control">
+                </div><br>
+                <div class="form-group">
                     <select name="confirmed" class="form-control btn btn-secondary">
                         <option value="null">Choose Status</option>
                         <option value="0">Pending</option>

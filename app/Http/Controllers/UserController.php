@@ -52,6 +52,7 @@ class UserController extends Controller
             $this->validate($request, [
                 'name' => 'required',
                 'price' => 'required',
+                'number' => 'required|max:11|min:10'
             ]);
             //image validation
             if($request->hasFile('image')){
@@ -96,7 +97,8 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'price' => 'required',
-            'category' => 'required'
+            'category' => 'required',
+            'number' => 'required|max:11|min:10'
         ]);
         if($request->hasFile('image')){
             $file = $request->file('image');

@@ -6,7 +6,6 @@
             <div class="banner_taital">
               <h1 class="find_text">FIND EVERYTHING YOU NEED</h1>
               <h2 class="crush_text">We Are Proffesional Enough to Offer You</h2>
-              <p class="long_text">Used Book Exchange Service for Absolutely Free</p>
             </div>
             <div class="contact">
               <div class="contact_bt"><a href="/contact">Contact Us</a></div>

@@ -5,8 +5,15 @@
         <div class="row g-5">
             <div class="col-md-12">
               <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                {{$post->user->name}}                
+                {{$post->user->name}}    
+                @if(Auth::check())
+                - 
+                <span class="text-info">
+                  {{Varsity::find($post->user->varsity)->name}}
+                 </span>
+                @endif            
               </h3>
+             
         
               <article class="blog-post">
                 <h2 class="blog-post-title">{{$post->book_name}}</h2>

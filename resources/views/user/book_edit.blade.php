@@ -18,6 +18,9 @@
                     <input type="number" name="price" value="{{$book->price}}" placeholder="Enter Book Price" class="form-control">
                 </div><br>
                 <div class="form-group">
+                    <input type="number" name="number" value="0{{$book->number}}" placeholder="Enter Mobile Number" class="form-control">
+                </div><br>
+                <div class="form-group">
                     <input type="file" name="image" class="form-control">
                 </div><br>
                 <select name="category" class="form-control">

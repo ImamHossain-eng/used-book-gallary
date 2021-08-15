@@ -66,11 +66,14 @@ class PagesController extends Controller
     }
     public function book_show($id){
         $book = Book::find($id);
-        if(Auth::user()->is_admin == 1){
-            return view('admin.book.show', compact('book'));
-            
-        }elseif(Auth::user()->is_admin !== 1){
-            return view('user.book_show', compact('book'));
+        if(Auth::check()){
+            if(Auth::user()->is_admin == 1){
+                return view('admin.book.show', compact('book'));
+                
+            }else{
+                return view('user.book_show', compact('book'));
+            }
+
         }else{
             return view('visitor.book_show', compact('book'));
         }

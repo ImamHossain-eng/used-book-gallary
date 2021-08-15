@@ -71,9 +71,9 @@ class BackController extends Controller
     }
     public function varsity_store(Request $request){
         $this->validate($request, [
-            'name'=>'required',
-            'address'=>'required',
-            'contact'=>'required'
+            'name'=>'required|max:191',
+            'address'=>'required|max:191',
+            'contact'=>'required|max:11'
         ]);
         Varsity::create($request->all());
         return redirect()->route('admin.varsity_index')->with('success', 'Successfully Created');
@@ -243,7 +243,8 @@ class BackController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'price' => 'required',
-            'category' => 'required'
+            'category' => 'required',
+            'number' => 'required|max:11|min:10'
         ]);
         if($request->hasFile('image')){
             $file = $request->file('image');
@@ -257,9 +258,11 @@ class BackController extends Controller
         $book->name = $request->input('name');
         $book->author = $request->input('author');
         $book->price = $request->input('price');
+        $book->number = $request->input('number');
         $book->category = $request->input('category');
         $book->description = $request->input('description');
         $book->image = $file_name;
+        $book->varsity = 0;
         $book->user = Auth::user()->id;
         $book->confirmed = 1;
         $book->save();
@@ -284,7 +287,8 @@ class BackController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'price' => 'required',
-            'confirmed' => 'required'
+            'confirmed' => 'required',
+            'number' => 'required|max:11|min:10'
         ]);
         
         //validation for new book

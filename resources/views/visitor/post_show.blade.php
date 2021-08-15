@@ -1,15 +1,27 @@
 @extends('layouts.app')
 @section('content')
+<head>
+    <style>
+        .abc{
+            background:linear-gradient(to bottom, #efefef, #9fe2eb );
+            box-shadow: 3px 5px #807d7d;
+        }
+        .cba{
+            background:linear-gradient(to right, #efefef, #dabadf );
+        }
+    </style>
+</head>
 <body>
     <div class="container">
         <div class="row g-5">
-            <div class="col-md-8">
+            <div class="col-md-8 abc"><br>
               <h3 class="pb-4 mb-4 fst-italic border-bottom">
                 {{$post->user->name}}                
               </h3>
         
               <article class="blog-post">
                 <h2 class="blog-post-title">{{$post->book_name}}</h2>
+               
                 <p class="blog-post-meta">
                     {{ date('F d, Y(D)', strtotime($post->created_at))}} by 
                     <span class="text-info d-inline-block">{{$post->created_at->diffForHumans()}}</span>
@@ -34,7 +46,8 @@
                 
               </article>
             </div>
-            <div class="col-md-4" style="border-left: 1px solid #212121">
+            <div class="col-md-4 cba" style="border-left: 1px solid #212121">
+                <br>
                 <h4>Recent Posts</h4>
                 <hr>
                 @foreach($posts as $post)
@@ -45,6 +58,7 @@
                         </strong>
                     </a> 
                     {{$post->created_at->diffForHumans()}}
+                    <hr>
                 </p>
                 @endforeach
             </div>

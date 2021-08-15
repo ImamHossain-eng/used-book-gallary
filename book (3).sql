@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2021 at 09:53 AM
+-- Generation Time: Aug 14, 2021 at 07:54 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -133,7 +133,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2021_08_01_193934_add_varsity_to_users_table', 17),
 (20, '2021_08_01_194839_create_varsities_table', 18),
 (21, '2021_08_04_213938_add_varsity_to_books_table', 19),
-(22, '2021_08_04_214900_add_number_to_books_table', 19);
+(22, '2021_08_04_214900_add_number_to_books_table', 19),
+(23, '2021_08_13_225551_create_posts_table', 20);
 
 -- --------------------------------------------------------
 
@@ -146,6 +147,30 @@ CREATE TABLE `password_resets` (
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `book_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `number` int(11) NOT NULL,
+  `body` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `user_id`, `book_name`, `number`, `body`, `created_at`, `updated_at`) VALUES
+(6, 68, 'Data Structure', 1915970075, '<p>xfghxfghngxhbn</p>', '2021-08-14 17:20:57', '2021-08-14 17:20:57'),
+(7, 68, 'Theory of Computing', 442, '<p>cghjmcghm</p>', '2021-08-14 17:21:36', '2021-08-14 17:21:36');
 
 -- --------------------------------------------------------
 
@@ -205,7 +230,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `is_admin`, `pa
 (43, 'Tatum Blackburn', 'abcd@gmail.cm', NULL, NULL, '$2y$10$dkwImeNjyTBHpAZpnMHAOuWdKpiJ95fJ2wAK.8TTmdpGDyTb9dR.C', NULL, '2021-08-04 15:12:47', '2021-08-04 15:16:06', '0', '3'),
 (44, 'Clarke Spears', 'cd@gmail.com', NULL, NULL, '$2y$10$KbV5d5Hs0hboHqjNPMqj4.lkkFfAQN0b2jl4cbYQSqXDSqAri7gMa', NULL, '2021-08-04 16:37:16', '2021-08-04 16:37:16', NULL, '3'),
 (45, 'Craig Goodwin', 'tonoy11@gmail.com', NULL, NULL, '$2y$10$DYyRnqngJAMAlVgm63TMHeJBeCd0LSRVC8UZetInZZVCjlfrziQNq', NULL, '2021-08-04 16:38:10', '2021-08-04 16:38:10', NULL, '3'),
-(46, 'Md Saiful Islam', 'saiful@gmail.com', NULL, NULL, '$2y$10$cgCQueUHghCI/xi.N2oPXuFOmxYOM4r1XaMye.b9XojMoejR4gYfe', NULL, '2021-08-06 07:43:37', '2021-08-06 07:45:37', '0', '3');
+(46, 'Md Saiful Islam', 'saiful@gmail.com', NULL, NULL, '$2y$10$cgCQueUHghCI/xi.N2oPXuFOmxYOM4r1XaMye.b9XojMoejR4gYfe', NULL, '2021-08-06 07:43:37', '2021-08-06 07:45:37', '0', '3'),
+(47, 'Mim Shikder', 'mim@gmail.com', NULL, NULL, '$2y$10$gfZtmhsNQJ.O6osaXX/TWuaLB5KguuenVbUMFETsSiH3Ix3G9eNWi', NULL, '2021-08-12 18:10:59', '2021-08-12 18:11:48', '0', '3'),
+(68, 'Opu', 'opu@gmail.com', NULL, NULL, '$2y$10$wRYYmtr8DOw3ZK.Ztx26EuHSDnHT7/7vK1P.vwCSIlLjjwLmnHwK.', NULL, '2021-08-14 17:13:54', '2021-08-14 17:15:00', '0', '4');
 
 -- --------------------------------------------------------
 
@@ -266,6 +293,12 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `types`
 --
 ALTER TABLE `types`
@@ -292,7 +325,7 @@ ALTER TABLE `varsities`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -310,7 +343,13 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `types`
@@ -322,7 +361,7 @@ ALTER TABLE `types`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `varsities`

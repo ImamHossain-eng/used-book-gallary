@@ -2,7 +2,7 @@
     <div class="container">
       <h1 class="partner_text">Register<br> AND LOGIN TO ENJOY</h1>
       <p class="lorem_ipsum_text">
-        <i>Used Book Exchanged</i> service for free. 
+        <i>Used Book Gallary</i>
         <br>
           Sell your old unused book and take another one that you needed.
       </p>
