@@ -11,6 +11,9 @@
                     <input type="text" name="book_name" class="form-control" placeholder="Enter Book Name">
                 </div><br>
                 <div class="form-group">
+                    <input type="text" name="author" class="form-control" placeholder="Enter Book Author Name">
+                </div><br>
+                <div class="form-group">
                     <input type="number" name="number" class="form-control" placeholder="Enter Contact Number">
                 </div><br>
                 <div class="form-group">

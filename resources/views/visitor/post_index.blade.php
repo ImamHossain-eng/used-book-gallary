@@ -6,6 +6,7 @@
       background:linear-gradient(to bottom, #efefef, #9c8585 );
       box-shadow: 2px 5px #313131;
     }
+    
   </style>
 </head>
 <body>
@@ -16,7 +17,7 @@
             </div>
             <div class="col-md-6">
                 {{Form::open(['route'=>'post.search', 'method'=>'POST'])}}
-                <input type="text" class="form-control" name="book" placeholder="Search by Book Name">
+                <input type="text" class="form-control" name="book" placeholder="Search by Book or Author Name">
             </div>
             <div class="col-md-4">
                 <button class="btn btn-primary" style="width:70%;"><i class="fa fa-search"></i> Search</button>
@@ -37,10 +38,10 @@
                       @endif
                     </strong> 
                   <h3 class="mb-0">{{$post->book_name}}</h3>
-                  <div class="mb-1 text-muted">{{$post->created_at->diffForHumans()}}</div>
-                  <p class="card-text mb-auto"><i class="fa fa-clock-o"></i> {{ date('F d, Y(D)', strtotime($post->created_at))}} at {{ date('g:ia', strtotime($post->created_at))}}</p>
-                  <div class="mb-1 text-muted">
-                      {!!$post->body!!}
+                  <div class="mb-1 text-muted">{{$post->author}}</div>
+                  <p class="card-text mb-auto"><i class="fa fa-clock-o"></i> {{$post->created_at->diffFOrHumans()}}</p>
+                  <div class="mb-1 text-muted as">
+                     
                   </div>
                   <a href="/post/{{$post->id}}" class="stretched-link btn btn-primary">Show Details</a>
                 </div>

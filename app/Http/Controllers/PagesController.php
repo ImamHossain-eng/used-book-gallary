@@ -146,7 +146,7 @@ class PagesController extends Controller
             'book' => 'required'
         ]);
         $search = $request->input('book');
-        $posts = Post::where('book_name', 'LIKE', '%' . $search . '%')->paginate(10);
+        $posts = Post::where('book_name', 'LIKE', '%' . $search . '%')->orWhere('author', 'LIKE', '%' . $search . '%')->paginate(10);
         return view('visitor.post_index', compact('posts'));           
     }
 }

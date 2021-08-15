@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 14, 2021 at 07:54 PM
+-- Generation Time: Aug 15, 2021 at 06:15 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -54,7 +54,9 @@ INSERT INTO `books` (`id`, `name`, `image`, `category`, `price`, `confirmed`, `u
 (46, 'Test Book', 'no_image.png', '8', 200, 1, '1', '2021-07-15 07:21:18', '2021-07-15 07:28:35', 'dafgbsfd', '<p>abcd</p>', 0, 0),
 (48, 'Bradley Turner', 'no_image.png', 'null', 731, 1, '1', '2021-07-15 08:53:17', '2021-07-15 08:53:17', 'Nihil minima minus c', '<p>svd</p>', 4, 0),
 (49, 'Demetrius Robbins', 'no_image.png', '11', 841, 1, '1', '2021-07-15 09:16:42', '2021-08-02 15:40:56', 'Aliquam natus ut nec', '<p>xfgjnfgyhn</p>', 0, 0),
-(52, 'Alfreda Ingram', 'no_image.png', '11', 890, 1, '43', '2021-08-04 15:54:25', '2021-08-04 16:20:50', 'Aut Nam aliquid fuga', '<p>&nbsp;njk.bjk.</p>', 3, 1813083311);
+(52, 'Alfreda Ingram', 'no_image.png', '11', 890, 1, '43', '2021-08-04 15:54:25', '2021-08-04 16:20:50', 'Aut Nam aliquid fuga', '<p>&nbsp;njk.bjk.</p>', 3, 1813083311),
+(54, 'Computer Fundamentals', 'no_image.png', '8', 350, 0, '69', '2021-08-15 13:41:00', '2021-08-15 13:41:00', 'Ismail Jabiullah', '<p>sdgvzdfgb</p>', 3, 1915970075),
+(57, 'Callum Sandoval', 'no_image.png', '12', 785, 1, '1', '2021-08-15 14:42:23', '2021-08-15 14:42:23', 'Vero dolorem quia no', '<p>gyjkhg</p>', 0, 301);
 
 -- --------------------------------------------------------
 
@@ -134,7 +136,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (20, '2021_08_01_194839_create_varsities_table', 18),
 (21, '2021_08_04_213938_add_varsity_to_books_table', 19),
 (22, '2021_08_04_214900_add_number_to_books_table', 19),
-(23, '2021_08_13_225551_create_posts_table', 20);
+(23, '2021_08_13_225551_create_posts_table', 20),
+(24, '2021_08_15_213547_add_author_to_posts_table', 21);
 
 -- --------------------------------------------------------
 
@@ -158,19 +161,22 @@ CREATE TABLE `posts` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` int(11) NOT NULL,
   `book_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `number` int(11) NOT NULL,
+  `number` int(20) NOT NULL,
   `body` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `author` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `user_id`, `book_name`, `number`, `body`, `created_at`, `updated_at`) VALUES
-(6, 68, 'Data Structure', 1915970075, '<p>xfghxfghngxhbn</p>', '2021-08-14 17:20:57', '2021-08-14 17:20:57'),
-(7, 68, 'Theory of Computing', 442, '<p>cghjmcghm</p>', '2021-08-14 17:21:36', '2021-08-14 17:21:36');
+INSERT INTO `posts` (`id`, `user_id`, `book_name`, `number`, `body`, `created_at`, `updated_at`, `author`) VALUES
+(8, 69, 'Data Structure', 1915970075, '<p>zdfbdfb</p>', '2021-08-15 15:40:13', '2021-08-15 15:41:57', 'Ajra v'),
+(9, 69, 'Octavius Bradley', 1915970075, '<p>v gjk,v jh,k</p>', '2021-08-15 15:48:09', '2021-08-15 15:48:09', 'Sint molestias ut cu'),
+(10, 69, 'Priscilla Mcpherson', 1813083311, '<p>b hjkl jbl</p>', '2021-08-15 15:49:53', '2021-08-15 15:49:53', 'Laborum Ut praesent'),
+(11, 69, 'Ori Wilson', 17114563, '<p>m[&#39;</p>', '2021-08-15 15:50:06', '2021-08-15 15:50:06', 'Eos totam dolore ul');
 
 -- --------------------------------------------------------
 
@@ -232,7 +238,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `is_admin`, `pa
 (45, 'Craig Goodwin', 'tonoy11@gmail.com', NULL, NULL, '$2y$10$DYyRnqngJAMAlVgm63TMHeJBeCd0LSRVC8UZetInZZVCjlfrziQNq', NULL, '2021-08-04 16:38:10', '2021-08-04 16:38:10', NULL, '3'),
 (46, 'Md Saiful Islam', 'saiful@gmail.com', NULL, NULL, '$2y$10$cgCQueUHghCI/xi.N2oPXuFOmxYOM4r1XaMye.b9XojMoejR4gYfe', NULL, '2021-08-06 07:43:37', '2021-08-06 07:45:37', '0', '3'),
 (47, 'Mim Shikder', 'mim@gmail.com', NULL, NULL, '$2y$10$gfZtmhsNQJ.O6osaXX/TWuaLB5KguuenVbUMFETsSiH3Ix3G9eNWi', NULL, '2021-08-12 18:10:59', '2021-08-12 18:11:48', '0', '3'),
-(68, 'Opu', 'opu@gmail.com', NULL, NULL, '$2y$10$wRYYmtr8DOw3ZK.Ztx26EuHSDnHT7/7vK1P.vwCSIlLjjwLmnHwK.', NULL, '2021-08-14 17:13:54', '2021-08-14 17:15:00', '0', '4');
+(68, 'Opu', 'opu@gmail.com', NULL, NULL, '$2y$10$wRYYmtr8DOw3ZK.Ztx26EuHSDnHT7/7vK1P.vwCSIlLjjwLmnHwK.', NULL, '2021-08-14 17:13:54', '2021-08-14 17:15:00', '0', '4'),
+(69, 'Babu', 'babubpx2762@gmail.com', NULL, NULL, '$2y$10$bmsRGzYM/4myP9rsgU8ML.atGlU56atYvIKcMXf87tZT/cGskOz7e', NULL, '2021-08-15 13:36:26', '2021-08-15 13:38:43', '0', '3');
 
 -- --------------------------------------------------------
 
@@ -325,7 +332,7 @@ ALTER TABLE `varsities`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -343,13 +350,13 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `types`
@@ -361,13 +368,13 @@ ALTER TABLE `types`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `varsities`
 --
 ALTER TABLE `varsities`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

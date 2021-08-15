@@ -143,12 +143,14 @@ class UserController extends Controller
     public function post_store(Request $request){
         $this->validate($request, [
             'book_name' => 'required',
-            'number' => 'required',
-            'body' => 'required'
+            'number' => 'required|max:11',
+            'body' => 'required',
+            'author' => 'required'
         ]);
         $post = new Post;
         $post->user_id = Auth::user()->id;
         $post->book_name = $request->input('book_name');
+        $post->author = $request->input('author');
         $post->number = $request->input('number');
         $post->body = $request->input('body');
         $post->save();
@@ -169,11 +171,13 @@ class UserController extends Controller
     public function post_update(Request $request, $id){
         $this->validate($request, [
             'book_name' => 'required',
-            'number' => 'required',
-            'body' => 'required'
+            'number' => 'required|max:11',
+            'body' => 'required',
+            'author' => 'required'
         ]);
         $post = Post::find($id);
         $post->book_name = $request->input('book_name');
+        $post->author = $request->input('author');
         $post->number = $request->input('number');
         $post->body = $request->input('body');
         $post->save();

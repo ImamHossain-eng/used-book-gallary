@@ -16,7 +16,7 @@
              
         
               <article class="blog-post">
-                <h2 class="blog-post-title">{{$post->book_name}}</h2>
+                <h2 class="blog-post-title">{{$post->book_name}} - <i>{{$post->author}}</i></h2>
                 <p class="blog-post-meta">
                     {{ date('F d, Y(D)', strtotime($post->created_at))}} by 
                     <span class="text-info d-inline-block">{{$post->created_at->diffForHumans()}}</span>

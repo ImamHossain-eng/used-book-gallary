@@ -9,6 +9,9 @@
         .cba{
             background:linear-gradient(to right, #efefef, #dabadf );
         }
+        .as{
+            padding:1em; background:#efefef;
+        }
     </style>
 </head>
 <body>
@@ -20,7 +23,7 @@
               </h3>
         
               <article class="blog-post">
-                <h2 class="blog-post-title">{{$post->book_name}}</h2>
+                <h2 class="blog-post-title">{{$post->book_name}} - <i>{{$post->author}}</i></h2>
                
                 <p class="blog-post-meta">
                     {{ date('F d, Y(D)', strtotime($post->created_at))}} by 
@@ -28,7 +31,7 @@
                 </p>
     
                 <hr>
-                <p>{!!$post->body!!}</p>
+                <div class="as">{!!$post->body!!}</div>
                 <hr>
                 <strong class="d-inline-block mb-2 text-danger">
                     Contact Details:
