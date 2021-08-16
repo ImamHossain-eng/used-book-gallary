@@ -13,6 +13,7 @@ use App\Models\Post;
 
 use Auth;
 use Image;
+use File;
 
 class UserController extends Controller
 {

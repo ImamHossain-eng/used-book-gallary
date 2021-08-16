@@ -14,6 +14,7 @@ use App\Models\Post;
 
 
 use Auth;
+use DB;
 
 class PagesController extends Controller
 {
@@ -147,6 +148,17 @@ class PagesController extends Controller
         ]);
         $search = $request->input('book');
         $posts = Post::where('book_name', 'LIKE', '%' . $search . '%')->orWhere('author', 'LIKE', '%' . $search . '%')->paginate(10);
+        
+       
+       
+        
+       /* $q->where(function ($query) {
+            $query->where('gender', 'Male')
+                ->where('age', '>=', 18);
+        })->orWhere(function($query) {
+            $query->where('gender', 'Female')
+                ->where('age', '>=', 65);	
+        })*/
         return view('visitor.post_index', compact('posts'));           
     }
 }
